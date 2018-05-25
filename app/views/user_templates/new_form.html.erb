@@ -1,0 +1,52 @@
+<!-- Validation failure messages -->
+<% if @user.present? %>
+  <% if @user.errors.any? %>
+    <% @user.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new user
+</h1>
+
+<hr>
+
+<form action="/create_user" method="post">
+  <!-- Label and input for caption -->
+  <div class="form-group">
+    <label for="caption">
+      Caption
+    </label>
+
+    <textarea id="caption" name="caption" class="form-control" rows="3"><%= @user.try(:caption) %></textarea>
+  </div>
+
+  <!-- Label and input for image -->
+  <div class="form-group">
+    <label for="image">
+      Image
+    </label>
+
+    <input type="text" id="image" name="image" class="form-control" value="<%= @user.try(:image) %>">
+  </div>
+
+  <!-- Input for user_id -->
+  <div class="form-group">
+
+    <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%=current_user.id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create user
+  </button>
+</form>
+
+<hr>
+
+<a href="/users">
+  Go back
+</a>

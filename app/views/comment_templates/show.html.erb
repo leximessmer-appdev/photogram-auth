@@ -1,0 +1,56 @@
+<h1>
+  Comment #<%= @comment.id %> details
+</h1>
+
+<a href="/comments/<%= @comment.id %>/edit">
+  Edit comment
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Photo
+  </dt>
+  <dd>
+    <%= @comment.photo_id %>
+  </dd>
+
+  <dt>
+    Body
+  </dt>
+  <dd>
+    <%= @comment.body %>
+  </dd>
+
+  <dt>
+    User
+  </dt>
+  <dd>
+    <%= @comment.user_id %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@comment.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@comment.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_comment/<%= @comment.id %>">
+  Delete comment
+</a>
+
+<hr>
+
+<a href="/comments">
+  Go back
+</a>

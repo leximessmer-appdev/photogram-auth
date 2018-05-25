@@ -1,0 +1,108 @@
+<h1>
+  user #<%= @user.id %> details
+</h1>
+
+<a href="/users/<%= @user.id %>/edit">
+  Edit user
+</a>
+
+<hr>
+
+<dl>
+
+  <dt>
+    Username
+  </dt>
+  <dd>
+    <%= @user.username %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@user.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@user.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_user/<%= @user.id %>">
+  Delete user
+</a>
+
+<hr>
+
+<a href="/users">
+  Go back
+</a>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Caption
+    </th>
+
+    <th>
+      Image
+    </th>
+
+    <th>
+      User
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% Photo.where(user_id: @user.id).each do |photo| %>
+  <tr>
+    <td>
+      <%= photo.id %>
+    </td>
+
+    <td>
+      <%= photo.caption %>
+    </td>
+
+    <td>
+      <%= photo.image %>
+    </td>
+
+    <td>
+      <%= photo.user_id %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(photo.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(photo.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/photos/<%= photo.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

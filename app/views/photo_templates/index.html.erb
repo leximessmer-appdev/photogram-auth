@@ -1,0 +1,98 @@
+<h1>
+  All photos
+</h1>
+
+<a href="/photos/new">
+  Add photo
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Caption
+    </th>
+
+    <th>
+      Image
+    </th>
+
+    <th>
+      User
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+
+    <th>
+    </th>
+    
+    <th>
+    </th>
+    
+  </tr>
+
+  <% @photos.each do |photo| %>
+  <tr>
+    <td>
+      <%= photo.id %>
+    </td>
+
+    <td>
+      <%= photo.caption %>
+    </td>
+
+    <td>
+      <%= photo.image %>
+    </td>
+
+    <td>
+      <%= User.find(photo.user_id).username %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(photo.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(photo.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/photos/<%= photo.id %>">
+        Show details
+      </a>
+    </td>
+    
+    <% if photo.user_id == current_user.id %>
+
+    <td>
+      <a href="/photos/<%= photo.id %>/edit">
+        Edit
+      </a>
+    </td>
+    
+    <td>
+      <a href="/delete_photo/<%= photo.id %>">
+        Delete
+      </a>
+    </td>
+    
+    <% end %>
+      
+  </tr>
+  <% end %>
+</table>

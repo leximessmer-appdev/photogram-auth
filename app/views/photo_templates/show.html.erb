@@ -1,0 +1,64 @@
+<h1>
+  Photo #<%= @photo.id %> details
+</h1>
+
+<% if @photo.user_id == current_user.id %>
+
+<a href="/photos/<%= @photo.id %>/edit">
+  Edit photo
+</a>
+
+<% end %>
+
+<hr>
+
+<dl>
+  <dt>
+    Caption
+  </dt>
+  <dd>
+    <%= @photo.caption %>
+  </dd>
+
+  <dt>
+    Image
+  </dt>
+  <dd>
+    <%= @photo.image %>
+  </dd>
+
+  <dt>
+    User
+  </dt>
+  <dd>
+    <%= @photo.user_id %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@photo.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@photo.updated_at) %> ago
+  </dd>
+</dl>
+
+<% if @photo.user_id == current_user.id %>
+
+<a href="/delete_photo/<%= @photo.id %>">
+  Delete photo
+</a>
+
+<% end %>
+
+<hr>
+
+<a href="/photos">
+  Go back
+</a>
